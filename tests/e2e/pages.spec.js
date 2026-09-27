@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { expectNoHorizontalOverflow } from "./helpers.js";
 
-const courses = [["hava", "Hava sistemleri", 6], ["sualti", "Su altı sistemleri", 6], ["suustu", "Deniz sistemleri", 6], ["roket", "Roket sistemleri", 3], ["goruntu-isleme", "Görüntü işleme", 5]];
+const courses = [["hava", "Hava sistemleri", 6], ["sualti", "Su altı sistemleri", 6], ["suustu", "Deniz sistemleri", 6], ["roket", "Roket sistemleri", 3], ["goruntu-isleme", "Görüntü işleme", 6]];
 
 for (const [slug, domain, topics] of courses) {
   test(`course page #/egitim/${slug} renders directly`, async ({ page }) => {
@@ -37,7 +37,7 @@ test("course topics stack in one column on mobile", async ({ page, isMobile }) =
 
 test("workshop page shows its format and a drawing instead of a photo", async ({ page }) => {
   await page.goto("./#/egitim/goruntu-isleme");
-  await expect(page.locator(".course-meta")).toContainText("1 GÜN · 4 SAAT");
+  await expect(page.locator(".course-meta")).toContainText("16 DERS");
   await expect(page.locator(".course-hero-drawing")).toBeVisible();
   await expect(page.locator(".course-hero-photo")).toHaveCount(0);
 });

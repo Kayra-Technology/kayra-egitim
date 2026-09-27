@@ -23,8 +23,16 @@ export const courseContent = {
   },
   vision: {
     slug: "goruntu-isleme", domain: "Görüntü işleme", title: "Piksellerden\nkarara.",
-    topics: ["Renk tespiti", "Kontur analizi", "Hough dönüşümleri", "ArUco tanıma", "Rota planlama"],
-    practice: ["Python", "OpenCV"],
+    // Source: GorkemDireybatogullari/egitim_w (16 lessons, grouped at headline level).
+    topics: [
+      "Görüntünün temelleri: piksel, çözünürlük, örnekleme, kuantalama",
+      "Renk uzayları: RGB, HSV, Lab",
+      "İyileştirme: histogram eşitleme, CLAHE, Gaussian ve median filtre",
+      "Morfoloji, eşikleme ve kenar tespiti",
+      "Segmentasyon: K-means, bağlı bileşenler, derin öğrenme",
+      "Geometrik dönüşümler ve kamera uygulamaları",
+    ],
+    practice: ["Python", "OpenCV", "PyTorch", "Canlı kamera", "Termal kamera", "Çöp tespiti"],
   },
 };
 

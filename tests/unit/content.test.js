@@ -12,7 +12,7 @@ describe("training catalogue", () => {
 
   it("lists the image-processing workshop with its format", () => {
     expect(workshops.map((workshop) => workshop.type)).toEqual(["vision"]);
-    expect(workshops[0].format).toBe("1 gün · 4 saat");
+    expect(workshops[0].format).toBe("16 ders");
   });
 
   it.each(trainingPrograms)("$type has a real photo and three summary lines", (program) => {

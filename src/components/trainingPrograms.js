@@ -40,8 +40,8 @@ export const workshops = [
   {
     type: "vision", label: "ATÖLYE", name: "Görüntü işlemeye giriş", headline: "Kameranın gördüğünü anla.",
     summary: "Python ve OpenCV",
-    description: "Python ve OpenCV ile görüntüden anlam çıkarın: renk ve şekil bulun, işaretçileri tanıyın, rota planlayın.",
-    format: "1 gün · 4 saat",
+    description: "Pikselden segmentasyona: renk uzayları, filtreleme, eşikleme, kenar tespiti ve derin öğrenmeyi kodla, adım adım uygulayın.",
+    format: "16 ders",
   },
 ];
 

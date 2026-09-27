@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
 import { KayraBrand } from "./KayraBrand";
 import { VehicleMark } from "./VehicleMark";
 import { trainingPrograms, workshops } from "./trainingPrograms";
-import { courseContent, courseHref } from "./courseContent";
+import { courseHref } from "./courseContent";
 import { contact, mailto } from "./contact";
 import { kitSurveys } from "./kitSurveys";
 import { useReveal } from "../hooks/useReveal";
@@ -128,7 +128,7 @@ export const HomePage = forwardRef(function HomePage({ ready, onReplayIntro, int
                 <span className="home-workshop-copy">
                   <small>{workshop.format.toLocaleUpperCase("tr")} · {workshop.summary.toLocaleUpperCase("tr")}</small>
                   <strong>{workshop.name}</strong>
-                  <span>{courseContent[workshop.type].topics.join(" · ")}</span>
+                  <span>{workshop.description}</span>
                 </span>
                 <ArrowUpRight size={20} aria-hidden="true" />
               </a>
