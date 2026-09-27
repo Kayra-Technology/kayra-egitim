@@ -65,3 +65,13 @@ test("3D lab loads the Draco model from the bundled decoder", async ({ page }) =
   await expect(page.locator(".lab-error")).toHaveCount(0);
   expect(failed).toEqual([]);
 });
+
+// Brochures reached by printed QR codes; their URLs must stay stable.
+for (const slug of ["usv", "c-usv", "iha", "rov"]) {
+  test(`brochure belgeler/kayra-${slug}-brosur.pdf is served as a PDF`, async ({ request }) => {
+    const response = await request.get(`./belgeler/kayra-${slug}-brosur.pdf`);
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("application/pdf");
+    expect((await response.body()).subarray(0, 5).toString()).toBe("%PDF-");
+  });
+}
