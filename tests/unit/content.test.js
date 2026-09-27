@@ -68,3 +68,14 @@ describe("course hash routing", () => {
     expect(courseFromHash()).toBeNull();
   });
 });
+
+describe("kit surveys", async () => {
+  const { kitSurveys, findKitSurvey } = await import("../../src/components/kitSurveys.js");
+
+  it("covers the UAV and rocket kits and links through the site's short paths", () => {
+    expect(kitSurveys.map((kit) => kit.type)).toEqual(["uav", "rocket"]);
+    expect(kitSurveys.map((kit) => kit.href)).toEqual(["/anket/iha", "/anket/roket"]);
+    kitSurveys.forEach((kit) => expect(trainingPrograms.some((program) => program.type === kit.type)).toBe(true));
+    expect(findKitSurvey("rov")).toBeUndefined();
+  });
+});

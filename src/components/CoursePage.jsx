@@ -5,6 +5,7 @@ import { VehicleMark } from "./VehicleMark";
 import { allPrograms, findProgram } from "./trainingPrograms";
 import { courseContent, courseHref } from "./courseContent";
 import { contact, mailto } from "./contact";
+import { findKitSurvey } from "./kitSurveys";
 
 const pad = (number) => String(number).padStart(2, "0");
 
@@ -15,6 +16,7 @@ export function CoursePage({ type }) {
   const heading = useRef(null);
   const homeHref = `${window.location.pathname}${window.location.search}#alanlar`;
   const hasPractice = course.practice.length > 0;
+  const kitSurvey = findKitSurvey(type);
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -59,6 +61,13 @@ export function CoursePage({ type }) {
             {course.topics.map((topic, index) => <li className="course-topic" key={topic}><span>{pad(index + 1)}</span>{topic}</li>)}
           </ol>
         </section>
+
+        {kitSurvey && (
+          <aside className="course-kit" aria-labelledby="kit-title">
+            <div><p className="course-kicker">GELİŞTİRDİĞİMİZ KİT</p><h2 id="kit-title">{kitSurvey.name}: görüşünü paylaş.</h2><p>{kitSurvey.text}</p></div>
+            <a className="course-primary" href={kitSurvey.href} target="_blank" rel="noopener noreferrer">Ankete katıl <ArrowUpRight size={16} /></a>
+          </aside>
+        )}
 
         {hasPractice && (
           <section className="course-practice-block" aria-labelledby="practice-title">

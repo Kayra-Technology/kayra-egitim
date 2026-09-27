@@ -89,3 +89,29 @@ for (const slug of ["usv", "c-usv", "iha", "rov"]) {
     expect(pdf.headers()["content-type"]).toContain("application/pdf");
   });
 }
+
+test("home shows the kit survey cards opening in a new tab", async ({ page }) => {
+  await page.goto("./?intro=refined");
+  await page.getByRole("button", { name: "Ana sayfaya geç" }).click();
+  const kits = page.locator("#kitler .home-kit");
+  await expect(kits).toHaveCount(2);
+  await expect(kits.first()).toHaveAttribute("target", "_blank");
+  await expect(kits.first()).toHaveAttribute("href", /anket\/iha$/);
+  await expect(kits.nth(1)).toHaveAttribute("href", /anket\/roket$/);
+});
+
+for (const [slug, expected] of [["hava", 1], ["roket", 1], ["sualti", 0], ["goruntu-isleme", 0]]) {
+  test(`course #/egitim/${slug} ${expected ? "shows" : "has no"} kit survey call-out`, async ({ page }) => {
+    await page.goto(`./#/egitim/${slug}`);
+    await expect(page.locator(".course-kit")).toHaveCount(expected);
+  });
+}
+
+for (const slug of ["iha", "roket"]) {
+  test(`survey link anket/${slug} redirects to its Google Form`, async ({ request, baseURL }) => {
+    test.skip(!process.env.E2E_BASE_URL, "redirects are served by Vercel, not vite preview");
+    const response = await request.get(`./anket/${slug}`, { maxRedirects: 0 });
+    expect([307, 308]).toContain(response.status());
+    expect(new URL(response.headers().location, baseURL).href).toMatch(/^https:\/\/docs\.google\.com\/forms\/d\/e\/[\w-]+\/viewform$/);
+  });
+}

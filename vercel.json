@@ -24,6 +24,16 @@
       "source": "/egitim/qr/rov",
       "destination": "/egitim/belgeler/kayra-rov-brosur.pdf",
       "permanent": false
+    },
+    {
+      "source": "/egitim/anket/iha",
+      "destination": "https://docs.google.com/forms/d/e/1FAIpQLSd2ddFV3iiPBApjIEd5d2XZEhq-WbZXh-ELIOHlAI5Bssbadg/viewform",
+      "permanent": false
+    },
+    {
+      "source": "/egitim/anket/roket",
+      "destination": "https://docs.google.com/forms/d/e/1FAIpQLSd7ZiLFJ3BZuEmGPWuf70x7JkIC3Ah_IeHDmnAJLxRZCIllQw/viewform",
+      "permanent": false
     }
   ],
   "rewrites": [

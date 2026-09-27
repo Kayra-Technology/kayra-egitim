@@ -5,6 +5,7 @@ import { VehicleMark } from "./VehicleMark";
 import { trainingPrograms, workshops } from "./trainingPrograms";
 import { courseContent, courseHref } from "./courseContent";
 import { contact, mailto } from "./contact";
+import { kitSurveys } from "./kitSurveys";
 import { useReveal } from "../hooks/useReveal";
 import "./home-page.css";
 
@@ -133,6 +134,24 @@ export const HomePage = forwardRef(function HomePage({ ready, onReplayIntro, int
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="home-kits home-shell" id="kitler" aria-labelledby="kits-title">
+        <header className="home-section-head" data-reveal>
+          <div>
+            <p className="home-kicker"><span /> GELİŞTİRDİĞİMİZ KİTLER</p>
+            <h2 id="kits-title">Görüşünü paylaş.<span>Kitleri birlikte şekillendirelim.</span></h2>
+          </div>
+        </header>
+        <div className="home-kit-grid">
+          {kitSurveys.map((kit) => (
+            <a key={kit.type} className="home-kit" href={kit.href} target="_blank" rel="noopener noreferrer" data-reveal>
+              <span className="home-kit-mark" aria-hidden="true"><VehicleMark type={kit.type} /></span>
+              <span className="home-kit-copy"><strong>{kit.name}</strong><span>{kit.text}</span></span>
+              <span className="home-kit-cta">Ankete katıl <ArrowUpRight size={15} /></span>
+            </a>
+          ))}
         </div>
       </section>
 
