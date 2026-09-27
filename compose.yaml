@@ -1,0 +1,8 @@
+services:
+  # docker compose run --build --rm test   → lint, unit, build and e2e in a container
+  test:
+    build: {context: ., target: test}
+  # docker compose up --build web          → production build on http://127.0.0.1:8080
+  web:
+    build: {context: ., target: web}
+    ports: ["127.0.0.1:8080:80"]

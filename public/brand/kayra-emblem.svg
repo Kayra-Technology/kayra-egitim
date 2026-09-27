@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 104" fill="none">
+  <title>Kayra amblemi</title>
+  <!-- Vector study traced from the archived Kayra hero image, not an original brand master. -->
+  <g stroke="#294339" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 76V35L44 6L82 35V76"/>
+    <path d="M22 42V84M33 33V67M44 30V96M55 33V53M55 61V79M66 42V84"/>
+  </g>
+  <g fill="#294339">
+    <circle cx="22" cy="84" r="5.4"/>
+    <circle cx="33" cy="67" r="5.4"/>
+    <circle cx="44" cy="28" r="6.4"/>
+    <circle cx="44" cy="96" r="5.4"/>
+    <circle cx="66" cy="84" r="5.4"/>
+  </g>
+</svg>

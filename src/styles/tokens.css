@@ -1,0 +1,78 @@
+/*
+ * Kayra design tokens — the single source for fonts, colours, spacing and motion.
+ * Derived from the calm white / sage "refined" intro, which is the site's reference look.
+ * Every page (intro, home, course, 3D lab) reads these variables; do not hard-code new colours.
+ */
+
+@font-face {
+  font-family: "Kayra Sans"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/kayra-inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Kayra Sans"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/kayra-inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Kayra Heading"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/kayra-exo2-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Kayra Heading"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url("/fonts/kayra-exo2-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Kayra Mono"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/kayra-dmmono-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Kayra Mono"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/kayra-dmmono-400-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+:root {
+  /* Typography */
+  --k-font-sans: "Kayra Sans", system-ui, sans-serif;
+  --k-font-heading: "Kayra Heading", "Kayra Sans", sans-serif;
+  --k-font-mono: "Kayra Mono", ui-monospace, monospace;
+
+  /* Ink (text, line drawings) — darkest to lightest */
+  --k-ink: #294339;
+  --k-ink-soft: #43594c;
+  --k-muted: #5f6f65;       /* body copy; 5.3:1 on white */
+  --k-subtle: #667569;      /* captions, mono labels; 4.9:1 on white */
+  --k-sage: #819082;        /* second line of large headings only (≥ 32px); 3.4:1 */
+
+  /* Warm accent: --k-accent for rules/arrows/icons (3.7:1, non-text), --k-accent-text for text (5.1:1) */
+  --k-accent: #9f7f65;
+  --k-accent-text: #86684f;
+  --k-accent-soft: #c9ae95;
+
+  /* Surfaces and rules */
+  --k-surface: #ffffff;
+  --k-surface-soft: #f6f8f3;
+  --k-surface-tint: #f0f3eb;
+  --k-rule: #dfe5df;
+  --k-rule-soft: #ebefe9;
+
+  /* Actions */
+  --k-action: #3d5748;
+  --k-action-hover: #223d2d;
+  --k-focus: #9f7f65;
+
+  /* Layout */
+  --k-shell: 1180px;
+  --k-gutter: 44px;          /* page side margin on desktop */
+  --k-header-h: 88px;
+
+  /* Motion */
+  --k-ease: cubic-bezier(.22, .75, .25, 1);
+}
+
+@media (max-width: 1000px) { :root { --k-gutter: 28px; --k-header-h: 80px; } }
+@media (max-width: 700px) { :root { --k-gutter: 20px; --k-header-h: 72px; } }

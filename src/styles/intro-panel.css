@@ -1,0 +1,23 @@
+/*
+ * Intro detail panel and vehicle summaries, shared by the hover/refined intros.
+ * Loaded after refined-intro.css (cascade order matters for .is-exploring stage sizes).
+ * Moved from the former components/training-detail.css on 2026-09-27.
+ */
+.intro-item-summary { display: block; margin-top: 9px; font: 12px/1.5 var(--k-font-sans); letter-spacing: 0; color: var(--k-muted); opacity: 0; animation: intro-item .6s calc(1.4s + var(--delay)) forwards; }
+.intro-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; margin-top: 22px; }
+.intro .intro-actions .intro-discover { display: inline-flex; align-items: center; justify-content: center; gap: 15px; min-height: 44px; padding: 11px 16px; border: 1px solid var(--k-action); border-radius: 2px; background: var(--k-action); color: #fff; font: 12px/1.5 var(--k-font-sans); letter-spacing: 0; transition: background .2s; }
+.intro .intro-actions .intro-discover:hover { background: var(--k-ink); }
+.intro .intro-actions .intro-back { min-height: 44px; margin: 0; }
+.intro-polished .intro-detail { z-index: 3; background: var(--k-surface); }
+.intro-hover .intro-composition { padding-block: 18px; }
+@media (min-width: 701px) {
+  .intro-polished.is-exploring .intro-stage { height: 530px; }
+  .intro-hover.is-exploring .intro-stage { min-height: 530px; }
+}
+@media (max-width: 700px) {
+  .intro-item-summary { font-size: 11px; margin-top: 7px; }
+  .intro-polished.is-exploring .intro-item.is-active { width: 136px; }
+  .intro-polished.is-exploring .intro-stage { padding-top: 168px; }
+  .intro-hover.is-exploring .intro-stage { padding-top: 175px; }
+  .intro-actions { gap: 8px 16px; }
+}

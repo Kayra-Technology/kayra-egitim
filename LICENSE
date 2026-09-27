@@ -1,0 +1,8 @@
+Copyright (c) 2026 Kayra Technology. All rights reserved.
+
+The source code is published for transparency. No licence to copy, modify or
+redistribute it is granted without prior written permission.
+
+Third-party components keep their own licences: the fonts in public/fonts
+(Inter, Exo 2, DM Mono) are under the SIL Open Font License 1.1; npm
+dependencies are listed in package-lock.json.
