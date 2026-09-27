@@ -9,11 +9,12 @@ test("intro hands off to the home page with focus on the brand", async ({ page }
   await expectNoHorizontalOverflow(page);
 });
 
-test("the site makes no requests to third-party origins", async ({ page }) => {
+test("the site makes no requests to third-party origins", async ({ page, baseURL }) => {
+  const self = new URL(baseURL).origin;
   const external = [];
   page.on("request", (request) => {
-    const { origin } = new URL(request.url());
-    if (!origin.startsWith("http://127.0.0.1") && !request.url().startsWith("data:")) external.push(request.url());
+    const url = request.url();
+    if (!url.startsWith("data:") && new URL(url).origin !== self) external.push(url);
   });
   await openHome(page);
   await page.evaluate(() => document.fonts.ready);

@@ -2,11 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
   "installCommand": "npm ci",
-  "buildCommand": "npm run build",
+  "buildCommand": "BASE_PATH=/egitim/ npm run build",
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/egitim", "destination": "/egitim/index.html" },
+    { "source": "/", "destination": "/egitim/index.html" }
+  ],
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/egitim/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]
