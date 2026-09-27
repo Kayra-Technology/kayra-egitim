@@ -75,3 +75,17 @@ for (const slug of ["usv", "c-usv", "iha", "rov"]) {
     expect((await response.body()).subarray(0, 5).toString()).toBe("%PDF-");
   });
 }
+
+// Short QR links are Vercel redirects (vercel.json), so they exist only on a deployment.
+for (const slug of ["usv", "c-usv", "iha", "rov"]) {
+  test(`short link qr/${slug} redirects to its brochure on the same host`, async ({ request, baseURL }) => {
+    test.skip(!process.env.E2E_BASE_URL, "redirects are served by Vercel, not vite preview");
+    const response = await request.get(`./qr/${slug}`, { maxRedirects: 0 });
+    expect([307, 308]).toContain(response.status());
+    const location = new URL(response.headers().location, baseURL);
+    expect(location.origin).toBe(new URL(baseURL).origin);
+    expect(location.pathname).toMatch(new RegExp(`/belgeler/kayra-${slug}-brosur\\.pdf$`));
+    const pdf = await request.get(`./qr/${slug}`);
+    expect(pdf.headers()["content-type"]).toContain("application/pdf");
+  });
+}

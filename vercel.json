@@ -4,14 +4,47 @@
   "installCommand": "npm ci",
   "buildCommand": "BASE_PATH=/egitim/ npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/egitim/qr/usv",
+      "destination": "/egitim/belgeler/kayra-usv-brosur.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/egitim/qr/c-usv",
+      "destination": "/egitim/belgeler/kayra-c-usv-brosur.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/egitim/qr/iha",
+      "destination": "/egitim/belgeler/kayra-iha-brosur.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/egitim/qr/rov",
+      "destination": "/egitim/belgeler/kayra-rov-brosur.pdf",
+      "permanent": false
+    }
+  ],
   "rewrites": [
-    { "source": "/egitim", "destination": "/egitim/index.html" },
-    { "source": "/", "destination": "/egitim/index.html" }
+    {
+      "source": "/egitim",
+      "destination": "/egitim/index.html"
+    },
+    {
+      "source": "/",
+      "destination": "/egitim/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/egitim/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }
