@@ -16,7 +16,8 @@ for (const [slug, domain, topics] of courses) {
 
 test("course back link returns to the home programs section", async ({ page }) => {
   await page.goto("./#/egitim/roket");
-  await page.getByRole("link", { name: "Tüm eğitimler" }).click();
+  // Phones hide the header back link; the breadcrumb goes to the same place on every width.
+  await page.getByRole("navigation", { name: "Sayfa yolu" }).getByRole("link", { name: "Eğitimler" }).click();
   await expect(page).toHaveURL(/#alanlar$/);
   await expect(page.locator("#alanlar")).toBeInViewport();
 });
@@ -115,3 +116,14 @@ for (const slug of ["iha", "roket"]) {
     expect(new URL(response.headers().location, baseURL).href).toMatch(/^https:\/\/docs\.google\.com\/forms\/d\/e\/[\w-]+\/viewform$/);
   });
 }
+
+test("top bar links the three Kayra sections from every education page", async ({ page }) => {
+  for (const [url, current] of [["./", "Eğitim"], ["./#/egitim/roket", "Eğitim"]]) {
+    await page.goto(url);
+    const bar = page.getByRole("navigation", { name: "Kayra bölümleri" });
+    await expect(bar.getByRole("link")).toHaveText(["Ar-Ge", "Eğitim", "Kariyer"]);
+    await expect(bar.getByRole("link", { name: "Ar-Ge" })).toHaveAttribute("href", "/");
+    await expect(bar.getByRole("link", { name: "Kariyer" })).toHaveAttribute("href", "/kariyer");
+    await expect(bar.getByRole("link", { name: current })).toHaveAttribute("aria-current", "page");
+  }
+});

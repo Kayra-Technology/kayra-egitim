@@ -1,0 +1,12 @@
+/* Ar-Ge · Eğitim · Kariyer tabs inside the site header (education palette). */
+.section-tabs { display: flex; align-items: center; gap: clamp(18px, 3vw, 36px); font-size: 14px; }
+.section-tabs a { position: relative; padding: 10px 0; color: var(--k-muted); transition: color .2s; }
+.section-tabs a:hover, .section-tabs a[aria-current="page"] { color: var(--k-ink); }
+.section-tabs a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 3px; height: 1px; background: var(--k-accent); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--k-ease); }
+.section-tabs a:hover::after, .section-tabs a[aria-current="page"]::after { transform: scaleX(1); }
+.section-tabs a[aria-current="page"] { font-weight: 500; }
+.section-tabs a:focus-visible { outline: 2px solid var(--k-focus); outline-offset: 4px; }
+@media (max-width: 480px) { .section-tabs { gap: 16px; font-size: 13px; } }
+.section-tabs a { white-space: nowrap; }
+/* Phones: brand + three tabs only; the intro itself offers the exploring action. */
+@media (max-width: 480px) { .home-header .home-replay { display: none; } }

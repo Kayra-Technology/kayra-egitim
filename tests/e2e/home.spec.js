@@ -45,20 +45,18 @@ test("revealed sections become visible as they scroll into view", async ({ page 
 });
 
 test("'Alanları keşfet' reopens the intro exploration", async ({ page, isMobile }) => {
+  test.skip(isMobile, "phones show only brand and section tabs in the header");
   await openHome(page);
   const replay = page.getByRole("button", { name: "Alanları keşfet" });
-  if (isMobile) await expect(replay).toBeVisible();
   await replay.click();
   await expect(page.locator(".intro")).toBeVisible();
   await expect(page.locator("main.home")).toHaveClass(/is-waiting/);
 });
 
-test("3D lab is announced as coming soon and not linked", async ({ page, isMobile }) => {
+test("3D lab is announced as coming soon and not linked", async ({ page }) => {
   await openHome(page);
-  if (isMobile) await page.getByRole("button", { name: "Menüyü aç" }).click();
-  await page.getByRole("navigation", { name: "Ana menü" }).getByRole("link", { name: "3D Atölye" }).click();
   const lab = page.locator("#atolye");
-  await expect(lab).toBeInViewport();
+  await lab.scrollIntoViewIfNeeded();
   await expect(lab.getByText("Yakında", { exact: true })).toBeVisible();
   await expect(page.locator('a[href*="view=rov-lab"]')).toHaveCount(0);
 });
@@ -76,24 +74,15 @@ test("home lists the vehicle trainings, the workshop and the published contact",
   await expect(page.getByText(/kayrarobotics|Temsili görsel/i)).toHaveCount(0);
 });
 
-test.describe("mobile menu", () => {
-  test.skip(({ isMobile }) => !isMobile, "menu button is mobile-only");
-
-  test("opens, closes with Escape and closes after navigating", async ({ page }) => {
-    await openHome(page);
-    const toggle = page.getByRole("button", { name: "Menüyü aç" });
-    const nav = page.getByRole("navigation", { name: "Ana menü" });
-    await expect(nav).toBeHidden();
-    await toggle.click();
-    await expect(nav).toBeVisible();
-    await expect(page.getByRole("button", { name: "Menüyü kapat" })).toHaveAttribute("aria-expanded", "true");
-    await page.keyboard.press("Escape");
-    await expect(nav).toBeHidden();
-    await toggle.click();
-    await nav.getByRole("link", { name: "Yaklaşım" }).click();
-    await expect(nav).toBeHidden();
-    await expect(page.locator("#yaklasim")).toBeInViewport();
-  });
+test("one header bar: brand and section tabs, no separate strip or page menu", async ({ page }) => {
+  await openHome(page);
+  await expect(page.locator(".home-header")).toHaveCount(1);
+  await expect(page.locator(".kayra-topbar")).toHaveCount(0);
+  const tabs = page.getByRole("navigation", { name: "Kayra bölümleri" });
+  await expect(tabs.getByRole("link")).toHaveText(["Ar-Ge", "Eğitim", "Kariyer"]);
+  await expect(page.getByRole("navigation", { name: "Ana menü" })).toHaveCount(0);
+  const heights = await tabs.getByRole("link").evaluateAll((links) => links.map((link) => link.getBoundingClientRect().height));
+  expect(new Set(heights).size).toBe(1); // no tab wraps onto two lines
 });
 
 test.describe("reduced motion", () => {

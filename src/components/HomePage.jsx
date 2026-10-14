@@ -1,6 +1,7 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
+import { forwardRef, useRef } from "react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { KayraBrand } from "./KayraBrand";
+import { SectionTabs } from "./site/SectionTabs";
 import { VehicleMark } from "./VehicleMark";
 import { trainingPrograms, workshops } from "./trainingPrograms";
 import { courseHref } from "./courseContent";
@@ -22,35 +23,17 @@ const approachSteps = [
  * language as the refined intro so the hand-off between them is seamless.
  */
 export const HomePage = forwardRef(function HomePage({ ready, onReplayIntro, intro = null }, homeLink) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const root = useRef(null);
   useReveal(root, ready);
-
-  useEffect(() => {
-    if (!menuOpen) return undefined;
-    function close(event) { if (event.key === "Escape") setMenuOpen(false); }
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
-  }, [menuOpen]);
-
-  const closeMenu = () => setMenuOpen(false);
 
   return (
     <main ref={root} className={ready ? "home is-ready" : "home is-waiting"} inert={!ready}>
       <header className="home-header">
         <div className="home-shell home-header-inner">
           <a ref={homeLink} className="home-brand" href="#top" aria-label="Kayra ana sayfa"><KayraBrand /></a>
-          <nav id="home-nav" className={menuOpen ? "home-nav is-open" : "home-nav"} aria-label="Ana menü">
-            <a href="#alanlar" onClick={closeMenu}>Eğitimler</a>
-            <a href="#atolye" onClick={closeMenu}>3D Atölye</a>
-            <a href="#yaklasim" onClick={closeMenu}>Yaklaşım</a>
-            <a href="#iletisim" onClick={closeMenu}>İletişim</a>
-          </nav>
+          <SectionTabs current="egitim" />
           <div className="home-header-side">
             <button className="home-replay" type="button" onClick={onReplayIntro}>Alanları keşfet <ArrowUpRight size={15} /></button>
-            <button className="home-menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="home-nav" aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}>
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
           </div>
         </div>
       </header>

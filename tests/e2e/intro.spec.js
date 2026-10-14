@@ -72,7 +72,8 @@ test.describe("?intro=scroll", () => {
     await expect(page).toHaveURL(/#\/egitim\/sualti$/);
   });
 
-  test("header 'Alanları keşfet' scrolls back to the intro", async ({ page }) => {
+  test("header 'Alanları keşfet' scrolls back to the intro", async ({ page, isMobile }) => {
+    test.skip(isMobile, "phones show only brand and section tabs in the header");
     await page.goto("./?intro=scroll");
     await page.locator("#yaklasim").scrollIntoViewIfNeeded();
     await page.getByRole("button", { name: "Alanları keşfet" }).click();

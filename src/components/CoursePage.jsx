@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import { KayraBrand } from "./KayraBrand";
+import { SectionTabs } from "./site/SectionTabs";
 import { VehicleMark } from "./VehicleMark";
 import { allPrograms, findProgram } from "./trainingPrograms";
 import { courseContent, courseHref } from "./courseContent";
@@ -31,6 +32,7 @@ export function CoursePage({ type }) {
       <a className="course-skip" href="#course-main" onClick={event => { event.preventDefault(); heading.current?.focus(); }}>İçeriğe geç</a>
       <header className="course-header course-shell">
         <a href={homeHref} aria-label="Kayra — eğitim alanlarına dön"><KayraBrand /></a>
+        <SectionTabs current="egitim" />
         <a className="course-back" href={homeHref}><ArrowLeft size={15} /> Tüm eğitimler</a>
       </header>
       <main id="course-main" className="course-shell">
